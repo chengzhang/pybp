@@ -12,10 +12,6 @@ class ActEnum(Enum):
     choose_file = 0
     choose_dir = 1
 
-    def member_names(self):
-        """return a list of member name"""
-        return self._member_names_  # pylint: disable=no-member
-
 
 def choose_file():
     """choose file via gui"""
@@ -32,10 +28,11 @@ def choose_dir():
 def parse_args():
     """parse args for main()"""
     parser = argparse.ArgumentParser()
-    parser.add_argument("--act",
-                        type=str,
-                        choices=ActEnum.member_names,
-                        default=ActEnum.choose_file.name)
+    parser.add_argument(
+        "--act",
+        type=str,
+        choices=ActEnum._member_names_,  # pylint: disable=no-member, protected-access
+        default=ActEnum.choose_file.name)
     main_args = parser.parse_args()
     return main_args
 
