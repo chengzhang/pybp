@@ -4,7 +4,12 @@
 
 from enum import Enum
 import argparse
+import os
 import easygui
+
+if os.environ.get('DISPLAY', '') == '':
+    print('no display found. Using :0.0')
+    os.environ.__setitem__('DISPLAY', ':0.0')
 
 
 class ActEnum(Enum):
