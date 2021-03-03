@@ -1,9 +1,12 @@
+# coding = utf8
+
+
 class Node(object):
     def __hash__(self):
         raise NotImplementedError
 
     def __eq__(self, other):
-        return self.__hash__() == other.__hash__()
+        return self.__hash__()
 
 
 class UnionFindSet(object):
@@ -11,8 +14,11 @@ class UnionFindSet(object):
         self.parent = {}
         self.tree_size = {}
 
-    # def find(self, node: Node) -> Node:
     def find(self, node):
+        """ find the root node which stands for a sub set
+        :param node: Node type
+        :return: root node, Node type
+        """
         if node not in self.parent:
             self.parent[node] = node
             self.tree_size[node] = 1
@@ -21,30 +27,29 @@ class UnionFindSet(object):
         while father != node:
             grandfather = self.parent[father]
             if grandfather != father:
-                self.tree_size[father] -= 1
                 self.parent[node] = grandfather
+                self.tree_size[father] -= 1
             node = father
             father = grandfather
         return father
 
-    # def union(self, a: Node, b: Node) -> Node:
-    def union(self, a, b):
-        a_root = self.find(a)
-        b_root = self.find(b)
-        if a_root == b_root:
-            return a_root
-        if self.tree_size[a_root] < self.tree_size[b_root]:
-            a_root, b_root = b_root, a_root
-        self.parent[b_root] = a_root
-        self.tree_size[a_root] += self.tree_size[b_root]
-        return a_root
+    def union(self, a, b):  # Node type
+        root_a = self.find(a)
+        root_b = self.find(b)
+        if root_a == root_b:
+            return root_a
+        if self.tree_size[root_a] < self.tree_size[root_b]:
+            root_a, root_b = root_b, root_a
+        self.parent[root_b] = root_a
+        self.tree_size[root_a] += self.tree_size[root_b]
+        return root_a
 
-    def get_unions(self): # -> List[Set[Node]]:
-        root_2_unions = {}
+    def get_unions(self):
+        unions = {}
         for node, parent in self.parent.items():
             root = self.find(node)
-            if root not in root_2_unions:
-                root_2_unions[root] = {node}
+            if root not in unions:
+                unions[root] = {node}
             else:
-                root_2_unions[root].add(node)
-        return list(root_2_unions.values())
+                unions[root].add(node)
+        return unions
