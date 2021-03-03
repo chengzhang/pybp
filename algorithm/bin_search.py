@@ -1,35 +1,32 @@
-def bin_search_exist(lst, target):
-    """
-    :param lst: list of values
-    :param target:
-    :return: index if target in lst, else -1
-    """
-    left, right = 0, len(lst)
-    while left < right:
-        mid = (left + right) // 2
-        if lst[mid] == target:
-            return mid
-        elif lst[mid] < target:
-            left = mid + 1
-        else:
-            right = mid
-    return -1
+# reference to python bisect.bisect_right bisect_left
 
 
-def bin_search_insert_index(lst, value):
-    """
-    find the index to insert the value
-    :param lst: list of values
-    :param value:
-    :return: [0, len(lst)], i if lst[i] >= value, len(lst) if value is bigger than all values in lst
-    """
-    left, right = 0, len(lst)
-    while left < right:
-        mid = (left + right) // 2
-        if lst[mid] == value:
-            return mid
-        elif lst[mid] < value:
-            left = mid + 1
+def bin_search_left(a, x, lo=0, hi=None):
+    if not hi:
+        hi = len(a)
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if x <= a[mid]:
+            hi = mid
         else:
-            right = mid
-    return right
+            lo = mid + 1
+    return lo
+
+
+def bin_search_right(a, x, lo=0, hi=None):
+    if not hi:
+        hi = len(a)
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if x < a[mid]:
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo
+
+
+def bin_search(a, x, lo=0, hi=None):
+    insert_index = bin_search_left(a, x, lo, hi)
+    if insert_index == hi:
+        return False
+    return a[insert_index] == x
