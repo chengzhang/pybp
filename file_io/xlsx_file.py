@@ -1,7 +1,10 @@
 """sample to read write xlsx file"""
 
 
+from typing import List, Dict, Text
 import openpyxl
+import sys
+
 
 def dump(sentences, file_path):
     """to label format, store local"""
@@ -23,7 +26,7 @@ def load(in_file):
     """load from in_file"""
     workbook = openpyxl.load_workbook(in_file)
     sheet = workbook.active
-    for i, row in sheet.rows:
+    for i, row in enumerate(sheet.rows):
         for j, cell in enumerate(row):
             print(i, j, cell.value, end=" ")
 
@@ -42,3 +45,12 @@ def dump_xlsx_table(table, filename, header=None):
             sheet.cell(row=row_idx, column=j+1, value=value)
         row_idx += 1
     workbook.save(filename)
+
+
+def dump_multi_sheet(name_to_sentences: Dict[Text, List[Text]], filepath: Text):
+    wb = openpyxl.Workbook()
+    for name, sentences in name_to_sentences.items():
+        sheet = wb.create_sheet(name)
+        for row_idx, sentence in enumerate(sentences):
+            sheet.cell(row=row_idx+1, column=1, value=sentence)
+    wb.save(filepath)

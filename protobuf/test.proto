@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package example;
+
+message Foo {
+    int64 x = 1;
+    int64 y = 2;
+}
+
+message Bar {
+    string z = 1;
+    Foo foo = 2;
+}
