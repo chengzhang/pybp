@@ -1,0 +1,15 @@
+
+jupyter
+traitlets==5.9.0
+notebook==6.5.4
+jupyter_contrib_nbextensions
+jupyter_nbextensions_configurator
+
+click
+dynaconf
+matplotlib
+numpy
+pandas
+pip
+tqdm
+wheel
