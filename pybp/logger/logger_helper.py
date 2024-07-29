@@ -9,7 +9,7 @@ import logging
 import os
 from logging.handlers import TimedRotatingFileHandler
 
-from utils.singleton import singleton
+from pybp.design_pattern.singleton import singleton
 
 
 APP_NAME = os.getenv('APP_NAME', 'UNDEFINED_APP')
