@@ -1,5 +1,5 @@
 """
-sgame_nlp_data 安装脚本
+安装脚本
 
 Author: donyzhang
 Date: 2024-07-10
@@ -36,7 +36,7 @@ setup(
     version='0.0.1',
     description='my commonly used skills',
     long_description=readme(),
-    keywords='nlp, data',
+    keywords='bp, bestpractise, utils, common, wheel',
     project_urls={
         'Documentation': 'https://github.com/chengzhang/pybp/README.md',
         'Source': 'https://github.com/chengzhang/pybp',
@@ -48,7 +48,7 @@ setup(
         ]
     },
     packages=find_packages(),
-    package_data={'sgame_nlp_data': ['config/settings.json']},
+    package_data={'pybp': ['config/settings.json']},
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
