@@ -32,19 +32,19 @@ def readme():
 
 
 setup(
-    name='zcpybestpractise',
+    name='pybp',
     version='0.0.1',
     description='my commonly used skills',
     long_description=readme(),
     keywords='nlp, data',
     project_urls={
-        'Documentation': 'https://github.com/chengzhang/zccppbestpractise/README.md',
-        'Source': 'https://github.com/chengzhang/zccppbestpractise',
-        'Tracker': 'https://github.com/chengzhang/zccppbestpractise/issue',
+        'Documentation': 'https://github.com/chengzhang/pybp/README.md',
+        'Source': 'https://github.com/chengzhang/pybp',
+        'Tracker': 'https://github.com/chengzhang/pybp/issue',
     },
     entry_points={
         'console_scripts': [
-            'sgame_nlp_data_cmd = bin.command:cli'
+            'pybp = bin.command:cli'
         ]
     },
     packages=find_packages(),
@@ -58,7 +58,7 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Natural Language :: Chinese',
     ],
-    url='https://github.com/chengzhang/zccppbestpractise',
+    url='https://github.com/chengzhang/pybp',
     author='Zhang Cheng',
     author_email='zhangwpc@gmail.com',
     tests_require=['pytest'],
