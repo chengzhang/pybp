@@ -20,7 +20,7 @@ if not os.path.exists(PREFIX):
 
 
 @singleton
-class Logger:
+class AppLogger:
     """
     Logger 类
     """
@@ -101,4 +101,4 @@ def get_logger():
     """
     获取 logger
     """
-    return Logger()
+    return AppLogger()
